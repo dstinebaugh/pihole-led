@@ -20,8 +20,9 @@ tailf /var/log/pihole.log | while read INPUT
 do
    if [[ "$INPUT" == *"/etc/pihole/gravity.list"* ]]; then
        gpio write $pin 1
-       sleep 0.5
+       sleep 0.2
        gpio write $pin 0
        echo "another ad bites the dust!"
+       sleep 0.1
     fi
 done
