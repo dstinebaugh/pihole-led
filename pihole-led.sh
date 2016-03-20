@@ -8,7 +8,7 @@
 ###########
 ### Version: 		0.1
 ### Author: 		Daniel Stinebaugh
-### Attribution:	http://stinebaugh.info
+### Attribution:	http://www.stinebaugh.info/get-led-alerts-for-each-blocked-ad-using-pi-hole/
 ### Date: 			03/19/2016
 ### License: 		Copyleft. Enjoy!
 ###########
