@@ -7,4 +7,4 @@ pihole-led.sh will parse /var/log/pihole.log for the string "/etc/pihole/gravity
 
 Comment out the echo line if you don't want screen updates.
 
-Attribution: http://www.stinebaugh.info/get-led-alerts-for-each-blocked-ad-using-pi-hole/
+Attribution and howto at: http://www.stinebaugh.info/get-led-alerts-for-each-blocked-ad-using-pi-hole/
