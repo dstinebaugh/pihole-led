@@ -22,7 +22,7 @@ do
        gpio write $pin 1
        sleep 0.2
        gpio write $pin 0
-       echo "another ad bites the dust!"
+#       echo "another ad bites the dust!"
        sleep 0.1
     fi
 done

@@ -7,8 +7,10 @@ pihole-led.sh will parse /var/log/pihole.log for the string "/etc/pihole/gravity
 
 *wiringPi for the odroid here: https://github.com/hardkernel/wiringPi*
 
-Comment out the echo line in the loop if you don't want textual updates to the terminal.
+Comment out the echo line 25 in the loop if you don't want textual updates to the terminal.
 
-I personally just run it in a screen session, but you could probably run this as a cron @reboot job or the likes.
+I have now also included a startup script to launch the pihole-led.sh script on boot. Just edit the values in the Setting block and include it's location to your /etc/rc.local file.
+
+The startup script will launch a new screen session named "blink" so the screen package is also required to be installed. (It's in your repos most likely) 
 
 Attribution and more info: http://www.stinebaugh.info/get-led-alerts-for-each-blocked-ad-using-pi-hole/
