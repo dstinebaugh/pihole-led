@@ -15,12 +15,16 @@
 ### License:        Copyleft. Enjoy!
 ###########
 
-# Settings
+#### Settings
+# Linux user to run as
 USERNAME='daniel'
+# folder holding the pihole-led.sh file
 BLINKLOC='/home/daniel/'
+# script name to run
 INVOCATION="pihole-led.sh"
+# history log of screen session keeping it small to save resources.
 HISTORY=10
-# End Settings
+### End Settings
 
 
 ME=`whoami`
