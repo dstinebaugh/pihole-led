@@ -12,17 +12,40 @@
 ### Date: 			03/19/2016
 ### License: 		Copyleft. Enjoy!
 ###########
+
+# Settings: off==0, on==1
+localLed=0
+remoteLed=1
+#remoteIp=127.0.0.1
+#remotePort=31415
+#ledDur=.2 # LED lit duration in seconds
+
+#FIXME: we should check if localLed=1 before initilizing local GPIO pin
+#setup gpio pin
 pin=0
 gpio mode $pin out
-# Defaults the pin to low when starting
 gpio write $pin 0
-tailf /var/log/pihole.log | while read INPUT
+
+localLed() {
+  gpio write $pin 1
+  sleep ${ledDur:-.2}
+  gpio write $pin 0
+# echo "another ad bites the dust!"
+  sleep 0.1
+}
+
+remoteLed() {
+  #[[ `which nc` ]] || { echo "ERROR - netcat (/bin/nc) not found." >&2; return 1; } 
+  ## Send $ledDur (default: .2) to remote HOST:PORT (default: 127.0.0.1:31415) via netcat
+  #echo "sending signal to LED @ ${remoteIp:-127.0.0.1}:${remotePort:-31415}"
+  echo "${ledDur:-.2}" | nc ${remoteIp:-127.0.0.1} ${remotePort:-31415}
+}
+
+tailf -n0 /var/log/pihole.log | while read INPUT
 do
-   if [[ "$INPUT" == *"/etc/pihole/gravity.list"* ]]; then
-       gpio write $pin 1
-       sleep 0.2
-       gpio write $pin 0
-#       echo "another ad bites the dust!"
-       sleep 0.1
-    fi
+  if [[ "$INPUT" == *"/etc/pihole/gravity.list"* ]]; then
+    [[ "$localLed" == "1" ]] && localLed &
+    [[ "$remoteLed" == "1" ]] && remoteLed &
+    wait
+  fi
 done
